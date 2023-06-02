@@ -1,0 +1,66 @@
+---
+title: Astro Error Pages
+description: Integrate custom error pages into your Astro project.
+template: splash
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+
+Astro Error Pages is a simple yet effective middleware for your Astro SSR (Server-Side Rendered) applications.
+It provides you with a way to intercept server responses, analyze status codes, and redirect to custom error pages when necessary.
+This functionality enables a more user-friendly error handling and overall smoother user experience.
+
+## Installation
+
+You can install Astro Error Pages via npm with the following command:
+
+<Tabs>
+  <TabItem label="npm">
+    ```sh
+    npm install astro-error-pages
+    ```
+  </TabItem>
+  <TabItem label="yarn">
+    ```sh
+    yarn add astro-error-pages
+    ```
+  </TabItem>
+</Tabs>
+
+## Setup
+
+You'll need astro version 2.4 or higher to have middleware enabled.
+
+If you are not already using middleware you need to add the following to your `astro.config.mjs`:
+
+```js
+import { defineConfig } from 'astro/config'
+
+// https://astro.build/config
+export default defineConfig({
+  experimental: {
+    middleware: true
+  },
+  output: 'server'
+})
+```
+
+In your Astro project create a file `src/middleware.ts` if you don't have one already. Then add the following code:
+
+```jsx harmony
+import {sequence} from "astro/middleware"
+import {astroErrorPages} from "error-pages"
+
+export const onRequest = sequence(astroErrorPages())
+```
+
+## Basic Usage
+
+By default, the custom error pages live in your `/pages/error-pages` directory.
+You can change this by passing a config object to the middleware. See the [Configuration](/config/configuration) section for more information
+on how you can configure the middleware.
+
+If a server response with a status code of 400 or above is encountered, the user will be redirected to the corresponding error page.
+So a 404 response will redirect to `/error-pages/404`, a 500 response will redirect to `/error-pages/500`, etc.
+
+You can customize these pages however you want.
