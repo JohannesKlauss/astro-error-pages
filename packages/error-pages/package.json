@@ -1,0 +1,20 @@
+{
+  "name": "error-pages",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build:js": "esbuild src/index.ts --bundle --sourcemap --minify --format=esm --platform=node --target=node16 --outfile=dist/index.js",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build": "npm run clean && npm run build:js && npm run build:types"
+  },
+  "peerDependencies": {
+    "astro": ">=2.4"
+  },
+  "devDependencies": {
+    "@types/node": "20.2.5",
+    "esbuild": "0.17.19"
+  }
+}

@@ -1,0 +1,1 @@
+export { astroErrorPages } from './astroErrorPages'
