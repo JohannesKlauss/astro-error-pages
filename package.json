@@ -2,6 +2,9 @@
   "name": "astro-error-pages",
   "version": "1.0.0",
   "private": false,
+  "scripts": {
+    "format": "npx rome format ./*/** --write"
+  },
   "workspaces": [
     "packages/*",
     "examples/*"

@@ -1,9 +1,9 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from 'astro/config'
 
 // https://astro.build/config
 export default defineConfig({
   experimental: {
-    middleware: true
+    middleware: true,
   },
-  output: 'server'
-});
+  output: 'server',
+})
